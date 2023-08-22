@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home.component';
+import { ComponentsModule } from '../../components/components.module';
 import { ChartModule } from 'primeng/chart';
 import { MenuModule } from 'primeng/menu';
 import { TableModule } from 'primeng/table';
@@ -12,6 +13,7 @@ import { HomeRoutingModule } from './home-routing.module';
 
 @NgModule({
     imports: [
+        ComponentsModule,
         CommonModule,
         FormsModule,
         ChartModule,
@@ -22,6 +24,8 @@ import { HomeRoutingModule } from './home-routing.module';
         ButtonModule,
         HomeRoutingModule
     ],
-    declarations: [HomeComponent]
+    declarations: [
+        HomeComponent
+    ]
 })
 export class HomeModule { }
