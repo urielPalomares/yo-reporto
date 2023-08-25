@@ -6,6 +6,7 @@ import { ComponentsModule } from '../../components/components.module';
 import { ChartModule } from 'primeng/chart';
 import { MenuModule } from 'primeng/menu';
 import { TableModule } from 'primeng/table';
+import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
 import { StyleClassModule } from 'primeng/styleclass';
 import { PanelMenuModule } from 'primeng/panelmenu';
@@ -19,6 +20,7 @@ import { HomeRoutingModule } from './home-routing.module';
         ChartModule,
         MenuModule,
         TableModule,
+        ToolbarModule,
         StyleClassModule,
         PanelMenuModule,
         ButtonModule,

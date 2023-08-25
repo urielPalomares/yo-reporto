@@ -1,0 +1,33 @@
+<p-toast></p-toast>
+<p-dialog [(visible)]="visible" [style]="{width: '450px'}" header="Nueva incidencia" [modal]="true" class="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="field">
+            <label for="title">Incidencia/Problema</label>
+            <input type="text" pInputText id="title" [(ngModel)]="incident.title" required autofocus />
+            <small class="ng-dirty ng-invalid">Incidencia/Problema is required.</small>
+        </div>
+        <div class="field">
+            <label for="description">Descripción</label>
+            <textarea id="description" [(ngModel)]="incident.description" pInputTextarea required rows="3" cols="20"></textarea>
+        </div>
+        <div class="field">
+            <!-- <maps-app></maps-app> -->
+        </div>
+
+        <div class="formgrid grid">
+            <div class="field col">
+                <label for="latitude">Latitud</label>
+                <input type="text" pInputText id="title" [(ngModel)]="incident.latitude" required />
+            </div>
+            <div class="field col">
+                <label for="longitude">Longitud</label>
+                <input type="text" pInputText id="title" [(ngModel)]="incident.longitude" required />
+            </div>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-raised p-button-text p-button-danger" (click)="visible = false"></button>
+        <button pButton pRipple label="Reportar incidencia" icon="pi pi-check" class="p-button-success" (click)="create()"></button>
+    </ng-template>
+</p-dialog>

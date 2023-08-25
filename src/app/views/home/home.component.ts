@@ -1,13 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { IncidentsService } from '../../services/incidents.service';
 
 @Component({
     templateUrl: './home.component.html'
 })
-export class HomeComponent implements OnInit {
 
+export class HomeComponent  {
+    newIncident = false;
 
-    constructor() {
+    get incidents() {
+      return this.activatedRoute.snapshot.data['incidents'][0].map((inc: any) => {
+        return [inc.longitude, inc.latitude];
+       });
     }
 
-    ngOnInit() {}
+  constructor(private activatedRoute: ActivatedRoute) {}
 }

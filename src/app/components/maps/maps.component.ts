@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import mapboxgl from 'mapbox-gl';
 import { mockMapConfiguration } from './maps.mock';
-import { environment } from '../../../environments/environment.prod';
+import { environment } from '../../../environments/environment';
 @Component({
   selector: 'maps-app',
   templateUrl: './maps.component.html',
   styleUrls: ['./maps.component.scss'],
 })
 export class MapsComponent implements OnInit {
+  @Input() incidents = [];
+
   ngOnInit(): void {
 
     const { 
@@ -26,9 +28,9 @@ export class MapsComponent implements OnInit {
       zoom: zoom,
     });
 
-    marks.forEach((mark) => {
-      new mapboxgl.Marker({ color: mark.color })
-      .setLngLat(mark.lngLat)
+    this.incidents.forEach((mark) => {
+      new mapboxgl.Marker({ color: 'red' })
+      .setLngLat(mark)
       .addTo(map);
     });
   }

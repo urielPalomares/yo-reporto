@@ -1,5 +1,19 @@
 <div class="grid">
     <app-statistics-bar class="col-3 lg:col-3 xl:col-3"></app-statistics-bar>
-    <maps-app class="col-8 lg:col-8 xl:col-8 min-h-full"></maps-app>
+
+    <div class="col-8 lg:col-8 xl:col-8 min-h-full">
+        
+            <p-toolbar styleClass="mb-2">
+                <ng-template pTemplate="left"></ng-template>
+
+                <ng-template pTemplate="right">
+                    <button pButton pRipple label="Nueva incidencia" icon="pi pi-plus" class="p-button-success p-button-outlined mr-2" (click)="newIncident = true"></button>
+                </ng-template>
+            </p-toolbar>
+
+        <maps-app [incidents]="incidents"></maps-app>
+
+        <app-form-incident [hidden]="!newIncident"></app-form-incident>
+    </div>
 </div>
 
