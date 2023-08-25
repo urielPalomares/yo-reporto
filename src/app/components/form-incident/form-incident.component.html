@@ -10,8 +10,9 @@
             <label for="description">Descripción</label>
             <textarea id="description" [(ngModel)]="incident.description" pInputTextarea required rows="3" cols="20"></textarea>
         </div>
-        <div class="field">
-            <!-- <maps-app></maps-app> -->
+        <div class="field p-inputgroup">
+          <input type="text" [(ngModel)]="incident.place" pInputText placeholder="Keyword" />
+          <button (click)="searchOnMap()" type="button" pButton icon="pi pi-map-marker" class="p-button-success"></button>
         </div>
 
         <div class="formgrid grid">
@@ -24,6 +25,7 @@
                 <input type="text" pInputText id="title" [(ngModel)]="incident.longitude" required />
             </div>
         </div>
+        <div class="relative w-full h-30rem mb-2" id="searchMap"></div>
     </ng-template>
 
     <ng-template pTemplate="footer">
