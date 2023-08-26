@@ -13,12 +13,14 @@ declare var mapboxSdk: any;
 export class FormIncidentComponent {
   visible = true;
   incident: any = {
-    title: "Bache enorme",
-    description: "Se abrio un nuevo bache en la calle Juarez",
+    title: null,
+    description: null,
     place: "",
     latitude: 19.3909829,
     longitude: -99.308764
   }
+  places = [];
+  placesOptions: any;
 
   constructor(
     private readonly incidentsService: IncidentsService,
@@ -40,13 +42,13 @@ export class FormIncidentComponent {
     })
   }
 
-  searchOnMap() {
+  searchOnMap(event: any) {
     const mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
     mapboxClient.geocoding
     .forwardGeocode({
-    query: this.incident.place,
+    query: event.query,
     autocomplete: false,
-    limit: 1
+    limit: 5
     })
     .send()
     .then((response: any) => {
@@ -60,10 +62,26 @@ export class FormIncidentComponent {
         console.error(response);
       return;
     }
-    const place = response.body.features[0];
+    this.places = response.body.features;
+    this.placesOptions = this.places.map((p: any) => {
+      return p.place_name;
+     });
+  });
     
-    this.incident.longitude = place.center[0];
-    this.incident.latitude = place.center[1];
+  }
+
+  onSelect(event: any){
+
+    let place = this.places.filter((x: any) => x.place_name === event);
+
+    if (!place) {
+      this.messageService.add({ severity: 'warn', summary: 'Error', detail: 'Elegir nuevamente el lugar' });
+    }
+
+     place = place[0];
+    
+    this.incident.longitude = (place as any).center[0];
+    this.incident.latitude = (place as any).center[1];
     const {
       style,
       zoom
@@ -73,12 +91,10 @@ export class FormIncidentComponent {
     const map = new mapboxgl.Map({
       container: 'searchMap',
       style,
-      center: place.center,
+      center: (place as any).center,
       zoom: zoom,
     });
 
-    new mapboxgl.Marker().setLngLat(place.center).addTo(map);
-  });
-    
+    new mapboxgl.Marker().setLngLat((place as any).center).addTo(map);
   }
 }

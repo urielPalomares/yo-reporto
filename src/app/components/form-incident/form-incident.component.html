@@ -1,29 +1,18 @@
 <p-toast></p-toast>
 <p-dialog [(visible)]="visible" [style]="{width: '450px'}" header="Nueva incidencia" [modal]="true" class="p-fluid">
     <ng-template pTemplate="content">
-        <div class="field">
-            <label for="title">Incidencia/Problema</label>
-            <input type="text" pInputText id="title" [(ngModel)]="incident.title" required autofocus />
-            <small class="ng-dirty ng-invalid">Incidencia/Problema is required.</small>
+        <div class="field pt-4">
+            <span class="p-float-label">
+                <input pInputText ="title" [(ngModel)]="incident.title" required  />
+                <label htmlFor="title">Incidencia/Problema</label>
+            </span>
+            
         </div>
         <div class="field">
-            <label for="description">Descripción</label>
-            <textarea id="description" [(ngModel)]="incident.description" pInputTextarea required rows="3" cols="20"></textarea>
+            <textarea id="description" [(ngModel)]="incident.description" pInputTextarea placeholder="Describe la incidencia ó problema" required rows="3" cols="20"></textarea>
         </div>
-        <div class="field p-inputgroup">
-          <input type="text" [(ngModel)]="incident.place" pInputText placeholder="Keyword" />
-          <button (click)="searchOnMap()" type="button" pButton icon="pi pi-map-marker" class="p-button-success"></button>
-        </div>
-
-        <div class="formgrid grid">
-            <div class="field col">
-                <label for="latitude">Latitud</label>
-                <input type="text" pInputText id="title" [(ngModel)]="incident.latitude" required />
-            </div>
-            <div class="field col">
-                <label for="longitude">Longitud</label>
-                <input type="text" pInputText id="title" [(ngModel)]="incident.longitude" required />
-            </div>
+        <div class="field">
+                <p-autoComplete [suggestions]="placesOptions" (completeMethod)="searchOnMap($event)" (onSelect)="onSelect($event)" placeholder="Address"></p-autoComplete>
         </div>
         <div class="relative w-full h-30rem mb-2" id="searchMap"></div>
     </ng-template>
