@@ -1,5 +1,5 @@
 <div class="grid">
-    <app-statistics-bar class="col-3 lg:col-3 xl:col-3"></app-statistics-bar>
+    <app-statistics-bar class="col-3 lg:col-3 xl:col-3" [data]="totals" *ngIf="showTotals"></app-statistics-bar>
 
     <div class="col-8 lg:col-8 xl:col-8 min-h-full">
         

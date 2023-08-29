@@ -28,10 +28,18 @@ export class MapsComponent implements OnInit {
       zoom: zoom,
     });
 
-    this.incidents.forEach((mark) => {
+    
+    this.incidents.forEach((mark: any) => {
+      const position = [parseFloat(mark.lng), parseFloat(mark.lat)]
+      const popup = new mapboxgl.Popup({ offset: 25 })
+      .setHTML(
+        `<strong>${mark.title}</strong><p>${mark.description}</p>`
+      );
+
       new mapboxgl.Marker({ color: 'red' })
-      .setLngLat(mark)
-      .addTo(map);
+      .setLngLat(position as any)
+      .addTo(map)
+      .setPopup(popup);
     });
   }
 }

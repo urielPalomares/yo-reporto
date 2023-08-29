@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router, Resolve } from '@angular/router';
-import { catchError, EMPTY, forkJoin, map, Observable, switchMap, throwError } from 'rxjs';
+import { catchError, forkJoin, Observable, throwError } from 'rxjs';
 import { IncidentsService } from '../../services/incidents.service';
 
 @Injectable({

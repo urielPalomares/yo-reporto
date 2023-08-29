@@ -4,6 +4,7 @@ import { CardTotalComponent } from './card-total/card-total.component';
 import { MapsComponent } from './maps/maps.component';
 import { StatisticsBarComponent } from './statistics-bar/statistics-bar.component';
 import { FormIncidentModule } from './form-incident/form-incident.module';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
     exports: [
@@ -14,6 +15,7 @@ import { FormIncidentModule } from './form-incident/form-incident.module';
     imports: [
         DialogModule,
         FormIncidentModule,
+        CommonModule
     ],
     declarations: [
         MapsComponent,

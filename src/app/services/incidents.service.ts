@@ -16,7 +16,7 @@ export class IncidentsService {
     return this.httpClient.get<any[]>(this.API_URL);
   }
 
-  gettById(id: number): Observable<any> {
+  getById(id: number): Observable<any> {
     return this.httpClient.get<any>(this.API_URL + `?${id}`);
   }
 

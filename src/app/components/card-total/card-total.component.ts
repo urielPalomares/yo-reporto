@@ -9,5 +9,5 @@ export class CardTotalComponent {
   @Input() title: string = "";
   @Input() subtitle = '';
   @Input() total: number = 0;
-  @Input() percentage = '';
+  @Input() percentage: number = 0;
 }
