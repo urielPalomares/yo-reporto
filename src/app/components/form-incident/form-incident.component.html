@@ -1,5 +1,5 @@
 <p-toast></p-toast>
-<p-dialog [(visible)]="visible" [style]="{width: '450px'}" header="Nueva incidencia" [modal]="true" class="p-fluid">
+<p-dialog [(visible)]="visible" (onHide)="closeEvent.emit()" [style]="{width: '450px'}" header="Nueva incidencia" [modal]="true" class="p-fluid">
     <ng-template pTemplate="content">
         <div class="field pt-4">
             <span class="p-float-label">
@@ -18,7 +18,7 @@
     </ng-template>
 
     <ng-template pTemplate="footer">
-        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-raised p-button-text p-button-danger" (click)="visible = false"></button>
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-raised p-button-text p-button-danger" (click)="closeEvent.emit()"></button>
         <button pButton pRipple label="Reportar incidencia" icon="pi pi-check" class="p-button-success" (click)="create()"></button>
     </ng-template>
 </p-dialog>
