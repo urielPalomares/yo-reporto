@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { IncidentsService } from 'src/app/services/incidents.service';
 import mapboxgl from 'mapbox-gl';
@@ -11,7 +11,9 @@ declare var mapboxSdk: any;
   providers: [MessageService]
 })
 export class FormIncidentComponent {
-  visible = true;
+
+  @Output() closeEvent = new EventEmitter<null>();
+  @Input() visible = false;
   incident: any = {
     title: null,
     description: null,
@@ -35,7 +37,7 @@ export class FormIncidentComponent {
       incidentStatusId: 1,
       incidentCategoryId: 3
     }).subscribe(response => {
-      this.visible = false;
+      this.closeEvent.emit();
       this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Se reporto correctamente la incidencia' });
     }, (err: any) => {
       throw new Error(err.error);

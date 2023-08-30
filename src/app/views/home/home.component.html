@@ -15,7 +15,10 @@
 
         <card-table [incidents]="incidents" *ngIf="incidents"></card-table>
 
-        <app-form-incident *ngIf="newIncident"></app-form-incident>
+        <app-form-incident 
+          [visible]="newIncident"
+          (closeEvent)="newIncident = false"
+        ></app-form-incident>
     </div>
 </div>
 
