@@ -1,0 +1,17 @@
+<div class="card">
+    <span class="block text-500 font-medium mb-3 text-center">{{title}}</span>
+    <p-table [value]="incidents">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Categoría</th>
+                <th class="text-center">Incidencias</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-incident>
+            <tr>
+                <td>{{incident.name}}</td>
+                <td class="text-center">{{incident.count}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

@@ -1,0 +1,25 @@
+<div class="card mb-0">
+    <div class="flex justify-content-center text-center">
+        <div>
+            <span class="block text-500 font-medium mb-3">{{title}}</span>
+            <p-chart type="doughnut" [data]="data" [options]="options"></p-chart>
+
+        </div>
+    </div>
+    <div class="mt-4">
+        <p-table [value]="incidents">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Status</th>
+                    <th class="text-center">Incidencias</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-incident>
+                <tr>
+                    <td>{{incident.description}}</td>
+                    <td class="text-center">{{incident.count}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>

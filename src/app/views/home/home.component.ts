@@ -1,16 +1,19 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MetricsService } from 'src/app/services/metrics.service';
+import { IncidentsService } from 'src/app/services/incidents.service';
+import { forkJoin, map } from 'rxjs';
 
 @Component({
   templateUrl: './home.component.html',
 })
 export class HomeComponent {
   newIncident = false;
-  showTotals = false;
-  totals: any;
+  showStatistics = false;
+  metrics: any;
+  incidents: any;
 
-  get incidents() {
+  get incidentPoints() {
     return this.activatedRoute.snapshot.data['incidents'][0].map((inc: any) => {
       return {
         lng: inc.longitude,
@@ -23,18 +26,21 @@ export class HomeComponent {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private metricsService: MetricsService
+    private metricsService: MetricsService,
+    private incidentsService: IncidentsService
   ) {
-    this.getTotals();
+    this.getMetrics();
   }
 
-  async getTotals() {
-    await this.metricsService.get().subscribe(response => {
-      this.showTotals = true;
-     console.log('response', response)
-     this.totals = response;
-    }, (err: any) => {
-      throw new Error(err.error);
-    })
+  async getMetrics() {
+    await forkJoin([this.metricsService.get(), this.incidentsService.getAll()])
+      .pipe(
+        map(([metrics, incidents]) => {
+          this.metrics = metrics;
+          this.incidents = incidents;
+          this.showStatistics = true;
+        })
+      )
+      .subscribe();
   }
 }

@@ -6,17 +6,23 @@ import { Component, Injectable, Input, OnInit } from '@angular/core';
   styleUrls: ['./statistics-bar.component.scss']
 })
 export class StatisticsBarComponent implements OnInit {
-  @Input() data: any;
+  @Input() metrics: any;
   
   title = "TOTAL INCIDENTS";
   subtitle = "Compared to last week";
   total = 0;
   percentage: number = 0;
 
+  incidentsByStatus: any;
+  incidentsByCategory: any;
+
     constructor() {}
 
     ngOnInit() {
-      this.total = this.data.count;
-      this.percentage = this.data.difference;
+      const { count, difference, incidentsByStatus, incidentsByCategory } = this.metrics;
+      this.total = count;
+      this.percentage = difference;
+      this.incidentsByStatus = incidentsByStatus
+      this.incidentsByCategory = incidentsByCategory
     }
 }

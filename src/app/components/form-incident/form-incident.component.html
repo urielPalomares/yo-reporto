@@ -12,7 +12,7 @@
             <textarea id="description" [(ngModel)]="incident.description" pInputTextarea placeholder="Describe la incidencia ó problema" required rows="3" cols="20"></textarea>
         </div>
         <div class="field">
-                <p-autoComplete [suggestions]="placesOptions" (completeMethod)="searchOnMap($event)" (onSelect)="onSelect($event)" placeholder="Address"></p-autoComplete>
+                <p-autoComplete [suggestions]="placesOptions" (completeMethod)="searchOnMap($event)" (onSelect)="onSelect($event)" placeholder="Dirección"></p-autoComplete>
         </div>
         <div class="relative w-full h-30rem mb-2" id="searchMap"></div>
     </ng-template>

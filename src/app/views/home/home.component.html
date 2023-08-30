@@ -1,7 +1,7 @@
 <div class="grid">
-    <app-statistics-bar class="col-3 lg:col-3 xl:col-3" [data]="totals" *ngIf="showTotals"></app-statistics-bar>
+    <app-statistics-bar class="col-3 lg:col-3 xl:col-3" [metrics]="metrics" *ngIf="showStatistics"></app-statistics-bar>
 
-    <div class="col-8 lg:col-8 xl:col-8 min-h-full">
+    <div class="col-9 lg:col-9 xl:col-9 min-h-full">
         
             <p-toolbar styleClass="mb-2">
                 <ng-template pTemplate="left"></ng-template>
@@ -11,9 +11,11 @@
                 </ng-template>
             </p-toolbar>
 
-        <maps-app [incidents]="incidents"></maps-app>
+        <maps-app [incidents]="incidentPoints" *ngIf="incidentPoints"></maps-app>
 
-        <app-form-incident [hidden]="!newIncident"></app-form-incident>
+        <card-table [incidents]="incidents" *ngIf="incidents"></card-table>
+
+        <app-form-incident *ngIf="newIncident"></app-form-incident>
     </div>
 </div>
 
