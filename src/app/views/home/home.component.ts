@@ -1,17 +1,22 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MetricsService } from 'src/app/services/metrics.service';
-import { IncidentsService } from 'src/app/services/incidents.service';
+import { MessageService } from 'primeng/api';
+import { MetricsService } from '../../services/metrics.service';
+import { IncidentsService } from '../../services/incidents.service';
 import { forkJoin, map } from 'rxjs';
 
 @Component({
   templateUrl: './home.component.html',
+  providers: [MessageService]
 })
 export class HomeComponent {
+
   newIncident = false;
   showStatistics = false;
+  showDetails = false;
   metrics: any;
   incidents: any;
+  selectedIncident: any;
 
   get incidentPoints() {
     return this.activatedRoute.snapshot.data['incidents'][0].map((inc: any) => {
@@ -42,5 +47,10 @@ export class HomeComponent {
         })
       )
       .subscribe();
+  }
+
+  details(incident: any) {
+    this.showDetails = true;
+    this.selectedIncident = incident;
   }
 }

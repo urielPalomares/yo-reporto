@@ -1,21 +1,21 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { FormIncidentComponent } from './form-incident.component';
+import { CommonModule } from '@angular/common';
 import { TableModule } from 'primeng/table';
-import { FileUploadModule } from 'primeng/fileupload';
-import { ButtonModule } from 'primeng/button';
-import { RippleModule } from 'primeng/ripple';
 import { ToastModule } from 'primeng/toast';
-import { ToolbarModule } from 'primeng/toolbar';
+import { RippleModule } from 'primeng/ripple';
 import { RatingModule } from 'primeng/rating';
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
+import { ToolbarModule } from 'primeng/toolbar';
 import { InputTextModule } from 'primeng/inputtext';
-import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DropdownModule } from 'primeng/dropdown';
+import { FileUploadModule } from 'primeng/fileupload';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 import { AutoCompleteModule } from 'primeng/autocomplete';
-import { DialogModule } from 'primeng/dialog';
+import { FormIncidentComponent } from './form-incident.component';
 
 @NgModule({
     imports: [

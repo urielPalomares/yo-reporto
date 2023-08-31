@@ -11,22 +11,25 @@ import { StatisticsBarComponent } from './statistics-bar/statistics-bar.componen
 import { CardStatusesComponent } from './card-statuses/card-statuses.component';
 import { CardCategoriesComponent } from './card-categories/card-categories.component';
 import { FormIncidentModule } from './form-incident/form-incident.module';
+import { CardIncidentDetailsModule } from './card-incident-details/card-incident-details.module';
 
 @NgModule({
     exports: [
         StatisticsBarComponent,
         MapsComponent,
+        CardTableModule,
         FormIncidentModule,
-        CardTableModule
+        CardIncidentDetailsModule
     ],
     imports: [
         DialogModule,
         CardTableModule,
-        FormIncidentModule,
         ChartModule,
         TableModule,
         TagModule,
-        CommonModule
+        CommonModule,
+        FormIncidentModule,
+        CardIncidentDetailsModule,
     ],
     declarations: [
         MapsComponent,

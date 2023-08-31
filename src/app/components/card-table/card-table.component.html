@@ -1,6 +1,8 @@
 <div class="card mt-4">
     <span class="block text-900 text-4xl mb-3 text-center">{{title}}</span>
-    <p-table [value]="incidents" [tableStyle]="{'min-width': '60rem'}">
+    <p-table [value]="incidents" [tableStyle]="{'min-width': '60rem'}"
+        selectionMode="single" [(selection)]="selectIncident" dataKey="id"
+        (onRowSelect)="details($event)">
         <ng-template pTemplate="header">
             <tr>
                 <th># de identificador</th>
@@ -11,22 +13,13 @@
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-incident>
-            <tr>
+            <tr [pSelectableRow]="incident">
                 <td>INC-{{incident.id}}</td>
                 <td>{{incident.title}}</td>
                 <td>{{incident.category.name}}</td>
-                <td>{{incident.createdAt}}</td>
+                <td>{{incident.createdAt | date:"dd/MM/yyyy hh:mm:ss a":"+0000"}}</td>
                 <td><p-tag [value]="incident.status.description" [severity]="getSeverity(incident.status.description)"></p-tag></td>
             </tr>
-            <!-- <tr>
-                <td></td>
-                <td colspan="4">{{incident.description}}</td>
-            </tr> -->
         </ng-template>
-        <!-- <ng-template pTemplate="summary">
-            <div class="flex align-items-rigth justify-content-between text-rigth">
-                In total there are {{incidents ? incidents.length : 0 }} incidents.
-            </div>
-        </ng-template> -->
     </p-table>
 </div>

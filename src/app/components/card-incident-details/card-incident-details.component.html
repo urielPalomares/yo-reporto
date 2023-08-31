@@ -1,0 +1,17 @@
+<p-toast></p-toast>
+<p-dialog [(visible)]="visible" (onHide)="closeEvent.emit()" [style]="{width: '450px'}" header="INCIDENT DETAILS" [modal]="true" class="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="relative w-full h-30rem mb-2" id="searchMapDetails"></div>
+        <span class="block text-900 text-xl font-bold mb-3 text-center">{{incident.title}}</span>
+        <span class="block text-700 font-medium mb-3 text-left">{{incident.description}}</span>
+        <span class="block text-700 font-medium mb-3 text-left">Categoría: {{incident.category.name}}</span>
+        <span class="block text-700 font-medium mb-3 text-left">Fecha de Reporte: {{incident.createdAt  | date:"dd/MM/yyyy hh:mm:ss a":"+0000"}}</span>
+        <span class="block text-700 font-medium mb-3 text-left">Estatus: 
+            <p-tag [value]="incident.status.description" [severity]="getSeverity(incident.status.description)"></p-tag>
+        </span>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cerrar" icon="pi pi-times" class="p-button-raised p-button-text p-button-primary"></button>
+    </ng-template>
+</p-dialog>

@@ -13,12 +13,19 @@
 
         <maps-app [incidents]="incidentPoints" *ngIf="incidentPoints"></maps-app>
 
-        <card-table [incidents]="incidents" *ngIf="incidents"></card-table>
+        <card-table [incidents]="incidents" (selectedIncident)="details($event)" *ngIf="incidents"></card-table>
 
         <app-form-incident 
           [visible]="newIncident"
           (closeEvent)="newIncident = false"
         ></app-form-incident>
+
+        <card-incident-details
+            *ngIf="showDetails"
+            [visible]="showDetails"
+            (closeEvent)="showDetails = false"
+            [incident]="selectedIncident"
+        ></card-incident-details>
     </div>
 </div>
 
