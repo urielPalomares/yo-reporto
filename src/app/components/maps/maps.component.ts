@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import mapboxgl from 'mapbox-gl';
 import { mockMapConfiguration } from './maps.mock';
-import { environment } from '../../../environments/environment';
 @Component({
   selector: 'maps-app',
   templateUrl: './maps.component.html',
@@ -20,7 +19,7 @@ export class MapsComponent implements OnInit {
       zoom
     } = mockMapConfiguration;
 
-    mapboxgl.accessToken = environment.mapbox_api_token;
+    mapboxgl.accessToken = import.meta.env.NG_APP_KEY_MAP;
     const map = new mapboxgl.Map({
       container,
       style,

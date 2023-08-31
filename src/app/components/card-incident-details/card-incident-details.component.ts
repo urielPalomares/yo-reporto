@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import mapboxgl from 'mapbox-gl';
 import { mockMapConfiguration } from '../maps/maps.mock';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'card-incident-details',
@@ -19,7 +18,7 @@ export class CardIncidentDetailsComponent {
       zoom
     } = mockMapConfiguration;
   
-    mapboxgl.accessToken = environment.mapbox_api_token;
+    mapboxgl.accessToken = import.meta.env.NG_APP_KEY_MAP;
     const position = [parseFloat(this.incident.longitude), parseFloat(this.incident.latitude)]
     const map = new mapboxgl.Map({
       container: 'searchMapDetails',

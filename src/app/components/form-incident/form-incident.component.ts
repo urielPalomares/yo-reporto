@@ -3,7 +3,6 @@ import { MessageService } from 'primeng/api';
 import { IncidentsService } from 'src/app/services/incidents.service';
 import mapboxgl from 'mapbox-gl';
 import { mockMapConfiguration } from '../maps/maps.mock';
-import { environment } from 'src/environments/environment';
 declare var mapboxSdk: any;
 @Component({
   selector: 'app-form-incident',
@@ -89,7 +88,7 @@ export class FormIncidentComponent {
       zoom
     } = mockMapConfiguration;
   
-    mapboxgl.accessToken = environment.mapbox_api_token;
+    mapboxgl.accessToken = import.meta.env.NG_APP_KEY_MAP;
     const map = new mapboxgl.Map({
       container: 'searchMap',
       style,
