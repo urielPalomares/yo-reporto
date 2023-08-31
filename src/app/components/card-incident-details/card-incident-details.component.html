@@ -12,6 +12,6 @@
     </ng-template>
 
     <ng-template pTemplate="footer">
-        <button pButton pRipple label="Cerrar" icon="pi pi-times" class="p-button-raised p-button-text p-button-primary"></button>
+        <button pButton pRipple label="Cerrar" icon="pi pi-times" class="p-button-raised p-button-text p-button-primary" (click)="closeEvent.emit()"></button>
     </ng-template>
 </p-dialog>
