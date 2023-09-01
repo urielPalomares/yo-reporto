@@ -6,11 +6,11 @@ import { AppLayoutComponent } from "./layout/app.layout.component";
 @NgModule({
     imports: [
         RouterModule.forRoot([
+            { path: '', loadChildren: () => import('./views/home/home.module').then(m => m.HomeModule) },
             {
-                path: '', component: AppLayoutComponent,
+                path: 'dashboard', component: AppLayoutComponent,
                 children: [
-                    { path: '', loadChildren: () => import('./views/home/home.module').then(m => m.HomeModule) },
-                    { path: 'pages', loadChildren: () => import('./demo/components/pages/pages.module').then(m => m.PagesModule) }
+                    { path: '', loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule) },
                 ]
             },
             { path: 'auth', loadChildren: () => import('./demo/components/auth/auth.module').then(m => m.AuthModule) },

@@ -1,0 +1,32 @@
+<div class="grid">
+    <app-statistics-bar class="col-3 lg:col-3 xl:col-3" [metrics]="metrics" *ngIf="showStatistics"></app-statistics-bar>
+
+    <div class="col-9 lg:col-9 xl:col-9 min-h-full">
+        
+            <p-toolbar styleClass="mb-2">
+                <ng-template pTemplate="left"></ng-template>
+
+                <ng-template pTemplate="right">
+                    <button pButton pRipple label="Nueva incidencia" icon="pi pi-plus" class="p-button-success p-button-outlined mr-2" (click)="newIncident = true"></button>
+                </ng-template>
+            </p-toolbar>
+
+        <maps-app [incidents]="incidentPoints" *ngIf="incidentPoints" (selectedIncident)="details($event)"></maps-app>
+
+        <card-table [incidents]="incidents" (selectedIncident)="details($event)" *ngIf="incidents"></card-table>
+
+        <app-form-incident 
+          [visible]="newIncident"
+          (closeEvent)="newIncident = false"
+          (update)="getMetrics()"
+        ></app-form-incident>
+
+        <card-incident-details
+            *ngIf="showDetails"
+            [visible]="showDetails"
+            (closeEvent)="showDetails = false"
+            [incident]="selectedIncident"
+        ></card-incident-details>
+    </div>
+</div>
+

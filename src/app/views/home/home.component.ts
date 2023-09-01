@@ -1,45 +1,12 @@
 import { Component } from '@angular/core';
-import { MessageService } from 'primeng/api';
-import { MetricsService } from '../../services/metrics.service';
-import { IncidentsService } from '../../services/incidents.service';
-import { forkJoin, map } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
-  templateUrl: './home.component.html',
-  providers: [MessageService]
+  templateUrl: './home.component.html'
 })
 export class HomeComponent {
 
-  newIncident = false;
-  showStatistics = false;
-  showDetails = false;
-  metrics: any;
-  incidents: any;
-  selectedIncident: any;
-  incidentPoints: any;
-
   constructor(
-    private metricsService: MetricsService,
-    private incidentsService: IncidentsService
-  ) {
-    this.getMetrics();
-  }
-
-  async getMetrics() {
-    await forkJoin([this.metricsService.get(), this.incidentsService.getAll()])
-      .pipe(
-        map(([metrics, incidents]) => {
-          this.metrics = metrics;
-          this.incidents = incidents;
-          this.incidentPoints = this.incidents;
-          this.showStatistics = true;
-        })
-      )
-      .subscribe();
-  }
-
-  details(incident: any) {
-    this.showDetails = true;
-    this.selectedIncident = incident;
-  }
+    public router: Router
+  ) {}
 }
