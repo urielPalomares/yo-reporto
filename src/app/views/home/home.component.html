@@ -11,13 +11,14 @@
                 </ng-template>
             </p-toolbar>
 
-        <maps-app [incidents]="incidentPoints" *ngIf="incidentPoints"></maps-app>
+        <maps-app [incidents]="incidentPoints" *ngIf="incidentPoints" (selectedIncident)="details($event)"></maps-app>
 
         <card-table [incidents]="incidents" (selectedIncident)="details($event)" *ngIf="incidents"></card-table>
 
         <app-form-incident 
           [visible]="newIncident"
           (closeEvent)="newIncident = false"
+          (update)="getMetrics()"
         ></app-form-incident>
 
         <card-incident-details

@@ -2,7 +2,6 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { NotfoundComponent } from './demo/components/notfound/notfound.component';
 import { AppLayoutComponent } from "./layout/app.layout.component";
-import { HomeResolver } from './views/home/home.resolver';
 
 @NgModule({
     imports: [
@@ -10,7 +9,7 @@ import { HomeResolver } from './views/home/home.resolver';
             {
                 path: '', component: AppLayoutComponent,
                 children: [
-                    { path: '', loadChildren: () => import('./views/home/home.module').then(m => m.HomeModule), resolve: { incidents: HomeResolver } },
+                    { path: '', loadChildren: () => import('./views/home/home.module').then(m => m.HomeModule) },
                     { path: 'pages', loadChildren: () => import('./demo/components/pages/pages.module').then(m => m.PagesModule) }
                 ]
             },

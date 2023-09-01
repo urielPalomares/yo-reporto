@@ -16,7 +16,7 @@
             <tr [pSelectableRow]="incident">
                 <td>INC-{{incident.id}}</td>
                 <td>{{incident.title}}</td>
-                <td>{{incident.category?.name}}</td>
+                <td>{{incident.category?.name || 'Sin asignado'}}</td>
                 <td>{{incident.createdAt | date:"dd/MM/yyyy hh:mm:ss a":"+0000"}}</td>
                 <td><p-tag [value]="incident.status.description" [severity]="getSeverity(incident.status.description)"></p-tag></td>
             </tr>

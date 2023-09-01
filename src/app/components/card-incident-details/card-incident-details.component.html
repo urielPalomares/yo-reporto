@@ -4,7 +4,7 @@
         <div class="relative w-full h-30rem mb-2" id="searchMapDetails"></div>
         <span class="block text-900 text-xl font-bold mb-3 text-center">{{incident.title}}</span>
         <span class="block text-700 font-medium mb-3 text-left">{{incident.description}}</span>
-        <span class="block text-700 font-medium mb-3 text-left">Categoría: {{incident.category.name}}</span>
+        <span class="block text-700 font-medium mb-3 text-left">Categoría: {{incident.category?.name || 'Sin asignar'}}</span>
         <span class="block text-700 font-medium mb-3 text-left">Fecha de Reporte: {{incident.createdAt  | date:"dd/MM/yyyy hh:mm:ss a":"+0000"}}</span>
         <span class="block text-700 font-medium mb-3 text-left">Estatus: 
             <p-tag [value]="incident.status.description" [severity]="getSeverity(incident.status.description)"></p-tag>

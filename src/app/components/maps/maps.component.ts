@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import mapboxgl from 'mapbox-gl';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import mapboxgl, { LngLatLike } from 'mapbox-gl';
 import { mockMapConfiguration } from './maps.mock';
 @Component({
   selector: 'maps-app',
@@ -8,13 +8,13 @@ import { mockMapConfiguration } from './maps.mock';
 })
 export class MapsComponent implements OnInit {
   @Input() incidents = [];
+  @Output() selectedIncident = new EventEmitter<any>();
 
   ngOnInit(): void {
 
     const { 
       centerCoordinates, 
       container,
-      marks,
       style,
       zoom
     } = mockMapConfiguration;
@@ -27,18 +27,21 @@ export class MapsComponent implements OnInit {
       zoom: zoom,
     });
 
-    
     this.incidents.forEach((mark: any) => {
-      const position = [parseFloat(mark.lng), parseFloat(mark.lat)]
-      const popup = new mapboxgl.Popup({ offset: 25 })
-      .setHTML(
-        `<strong>${mark.title}</strong><p>${mark.description}</p>`
-      );
+      const position: LngLatLike = [Number(mark.longitude), Number(mark.latitude)];
 
-      new mapboxgl.Marker({ color: 'red' })
+      var marker = new mapboxgl.Marker({ color: '#3bb2d0' })
       .setLngLat(position as any)
-      .addTo(map)
-      .setPopup(popup);
+      .addTo(map);
+
+      const clickMarket = marker.getElement() as any;
+      clickMarket.addEventListener('click', () => {
+        this.showDetails(mark);
+      });
     });
+  }
+
+  showDetails (mark: any) {
+    this.selectedIncident.emit(mark);
   }
 }

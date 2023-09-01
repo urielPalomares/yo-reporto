@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { MetricsService } from '../../services/metrics.service';
 import { IncidentsService } from '../../services/incidents.service';
@@ -17,20 +16,9 @@ export class HomeComponent {
   metrics: any;
   incidents: any;
   selectedIncident: any;
-
-  get incidentPoints() {
-    return this.activatedRoute.snapshot.data['incidents'][0].map((inc: any) => {
-      return {
-        lng: inc.longitude,
-        lat: inc.latitude,
-        title: inc.title,
-        description: inc.description,
-      };
-    });
-  }
+  incidentPoints: any;
 
   constructor(
-    private activatedRoute: ActivatedRoute,
     private metricsService: MetricsService,
     private incidentsService: IncidentsService
   ) {
@@ -43,6 +31,7 @@ export class HomeComponent {
         map(([metrics, incidents]) => {
           this.metrics = metrics;
           this.incidents = incidents;
+          this.incidentPoints = this.incidents;
           this.showStatistics = true;
         })
       )
