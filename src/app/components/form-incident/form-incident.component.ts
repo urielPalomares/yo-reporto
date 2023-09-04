@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { IncidentsService } from 'src/app/services/incidents.service';
-import mapboxgl from 'mapbox-gl';
+import mapboxgl, { LngLatLike } from 'mapbox-gl';
 import { mockMapConfiguration } from '../maps/maps.mock';
 import { IncidentCategoriesService } from 'src/app/services/incident-categories.service';
 declare var mapboxSdk: any;
@@ -32,6 +32,21 @@ export class FormIncidentComponent {
     private messageService: MessageService
   ) {
     this.getCategories();
+  }
+
+  loadMap(): void {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { longitude, latitude} = position.coords;
+        const map = this.setMapWithCenter({ lng: longitude, lat: latitude});
+        new mapboxgl.Marker().setLngLat({ lng: longitude, lat: latitude}).addTo(map);
+      },
+      (error) => {
+        console.log(error);
+        const { longitude, latitude } = this.incident;
+        this.setMapWithCenter({ lng: longitude, lat: latitude});
+      }
+    )
   }
 
   async getCategories() {
@@ -100,15 +115,9 @@ export class FormIncidentComponent {
     place = place[0];
     this.incident.longitude = (place as any).center[0];
     this.incident.latitude = (place as any).center[1];
-    const { style, zoom } = mockMapConfiguration;
 
     mapboxgl.accessToken = import.meta.env.NG_APP_KEY_MAP;
-    const map = new mapboxgl.Map({
-      container: 'searchMap',
-      style,
-      center: (place as any).center,
-      zoom: zoom,
-    });
+    const map = this.setMapWithCenter((place as any).center);
     const marker = new mapboxgl.Marker({
       draggable: true,
     })
@@ -130,5 +139,17 @@ export class FormIncidentComponent {
       this.incident.incidentCategoryId = option.value;
       this.incident.title = this.categories[index].name;
     }
+  }
+
+  private setMapWithCenter(center: LngLatLike) {
+    const { style, zoom } = mockMapConfiguration;
+    const map = new mapboxgl.Map({
+      container: 'searchMap',
+      style,
+      center: center,
+      zoom: zoom,
+    });
+
+    return map;
   }
 }
