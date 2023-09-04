@@ -2,6 +2,7 @@
 <p-dialog
   [(visible)]="visible"
   (onHide)="closeEvent.emit()"
+  (onShow)="loadMap()"
   [style]="{ width: '450px' }"
   header="Nueva incidencia"
   [modal]="true"
