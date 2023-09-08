@@ -15,14 +15,22 @@ export class AuthService {
     return this.httpClient.post<any>(this.API_URL, body);
   }
 
-  public signIn(userData: any){
-    localStorage.setItem('ACCESS_TOKEN', "access_token");
+  public signIn(user: any){
+    localStorage.setItem('ACCESS_TOKEN', user.token);
+    localStorage.setItem('USERNAME', user.username);
   }
+
   public isLoggedIn(){
     return localStorage.getItem('ACCESS_TOKEN') !== null;
   }
+
+  public getUsername(){
+    return localStorage.getItem('USERNAME');
+  }
+  
   public logout(){
     localStorage.removeItem('ACCESS_TOKEN');
+    localStorage.removeItem('USERNAME');
   }
 
 }

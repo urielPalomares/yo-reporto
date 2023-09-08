@@ -1,0 +1,41 @@
+<p-toast></p-toast>
+<div class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden"
+    style="background-image: linear-gradient(to left top, #e5e1ab, #b8e3b7, #8fe0d2, #7fd8ec, #96caf7);">
+    <div class="flex flex-column align-items-center justify-content-center">
+        <div class="w-full surface-card py-8 px-5 sm:px-8" style="border-radius:20px">
+            <div class="text-center">
+                <img src="assets/images/{{layoutService.config.colorScheme === 'light' ? 'logo-dark' : 'logo-white'}}.png" alt="Yo-repoto logo" class="mb-3 w-6rem flex-shrink-0">
+                <div class="text-900 text-3xl font-medium mb-3">Bienvenido!</div>
+                <span class="text-600 font-medium">Completa los datos para continuar</span>
+            </div>
+            <hr>
+            <div class="flex flex-column">
+
+                <span class="p-float-label mb-5">
+                    <input pInputText id="name1" pInputText class="w-full md:w-30rem" style="padding:1rem" [(ngModel)]="user.name" />
+                    <label htmlFor="name1">Nombre</label>
+                </span>
+
+                <span class="p-float-label mb-5">
+                    <input id="surname1" pInputText class="w-full md:w-30rem" style="padding:1rem" [(ngModel)]="user.surname">
+                    <label htmlFor="surname1">Primer Apellido</label>
+                </span>
+
+                <span class="p-float-label mb-5">
+                    <input id="email1" pInputText class="w-full md:w-30rem" style="padding:1rem" [(ngModel)]="user.email">
+                    <label htmlFor="email1">Email</label>
+                </span>
+
+                <span class="p-float-label mb-5">
+                    <p-password id="password1" [(ngModel)]="user.password" [toggleMask]="true" inputStyleClass="w-full md:w-30rem"></p-password>
+                    <label htmlFor="password1">Contraseña</label>
+                </span>
+
+
+                <div class="text-center mb-5">
+                    <button pButton pRipple label="Registrarme" class="p-button-success" (click)="register()"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -42,8 +42,8 @@ export class LoginComponent {
                     detail: 'Usuario o contraseña son incorrectos, favor de intentar nuevamente',
                   });
               }
-              this.authService.signIn(response.token);
-              this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
+              this.authService.signIn(response);
+              this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Access granted', life: 3000 });
               this.router.navigate(['/dashboard']);
             },
             (err: any) => {
